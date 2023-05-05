@@ -5,6 +5,19 @@ use actix_web::middleware::Logger;
 use dotenv::dotenv;
 use env_logger;
 
+use crate::safe::{SafeInfo, SafeResponse};
+use crate::safe_config::SafeConfig;
+use crate::safe_handlers::*;
+use crate::safe_service::SafeService;
+use crate::safe_use_case::SafeUseCase;
+
+pub(crate) mod safe_service;
+pub(crate) mod safe_handlers;
+pub(crate) mod safe;
+pub(crate) mod safe_use_case;
+pub(crate) mod safe_config;
+pub(crate) mod ethers_ext;
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     dotenv().ok();
