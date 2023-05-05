@@ -49,6 +49,14 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(Logger::default())
             .wrap(middleware::Compress::default())
+            .wrap(
+                Cors::default()
+                    .allow_any_origin()
+                    .allow_any_method()
+                    .allow_any_header()
+                    .supports_credentials()
+                    .max_age(3600),
+            )
     })
         .bind((address, port))?
         .run()
