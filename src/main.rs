@@ -18,6 +18,16 @@ pub(crate) mod safe_use_case;
 pub(crate) mod safe_config;
 pub(crate) mod ethers_ext;
 
+#[derive(OpenApi)]
+#[
+openapi(paths(calculate_address, deploy_contract, exec_transaction),
+components(schemas(SafeInfo, SafeCall, SafeResponse, SafeErr)),
+tags(
+(name = "safe::api", description = "Safe management endpoints.")
+))
+]
+struct ApiDoc;
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     dotenv().ok();
